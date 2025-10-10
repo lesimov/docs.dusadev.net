@@ -1,8 +1,4 @@
----
-icon: arrow-down-to-line
----
-
-# Installation
+# Installation Guide
 
 This guide will walk you through the installation and setup of the Dusa Hunting System.
 
@@ -10,66 +6,57 @@ This guide will walk you through the installation and setup of the Dusa Hunting 
 
 Before installing the hunting system, ensure you have the following:
 
-1. **Framework** - QBCore, ESX, or QBox
-2. **Required Resources**:
-   * [ox\_lib](https://github.com/overextended/ox_lib) - Required library
-   * dusa\_bridge - Framework bridge (On your keymaster)
-3. **Optional Resources**:
-   * [MugShotBase64](https://github.com/BaziForYou/MugShotBase64) - For hunting license ID cards
+1. **FiveM Server** - A running FiveM server (recommended: latest artifacts)
+2. **Framework** - QBCore, ESX, or QBox
+3. **Required Resources**:
+   - [ox_lib](https://github.com/overextended/ox_lib) - Required library
+   - [dusa_bridge](https://github.com/D-Development-FiveM/dusa_bridge) - Framework bridge
+
+4. **Optional Resources**:
+   - [MugShotBase64](https://github.com/BaziForYou/MugShotBase64) - For hunting license ID cards
 
 ## Step-by-Step Installation
 
 ### Step 1: Download the Resource
 
-1. Download the `dusa_hunting` resource from keymaster
+1. Download the `dusa_hunting` resource
 2. Extract the archive to your server's `resources` folder
-3. Ensure the folder name is `dusa_hunting`
+3. Ensure the folder name is `dusa_hunting` (without any version numbers)
 
 ### Step 2: Install Dependencies
 
-1. **Install ox\_lib**:
-   * Download from: [https://github.com/overextended/ox\_lib/releases](https://github.com/overextended/ox_lib/releases)
-   * Place in your `resources` folder
-   * Add to `server.cfg`: `ensure ox_lib`
-2. **Install dusa\_bridge**:
-   * Download from: [Keymaster](https://keymaster.fivem.net/)
-   * Place in your `resources` folder
-   * Add to `server.cfg`: `ensure dusa_bridge`
+1. **Install ox_lib**:
+   - Download from: https://github.com/overextended/ox_lib/releases
+   - Place in your `resources` folder
+   - Add to `server.cfg`: `ensure ox_lib`
+
+2. **Install dusa_bridge**:
+   - Download from: https://github.com/D-Development-FiveM/dusa_bridge
+   - Place in your `resources` folder
+   - Add to `server.cfg`: `ensure dusa_bridge`
+
 3. **(Optional) Install MugShotBase64**:
-   * Download from: [https://github.com/BaziForYou/MugShotBase64](https://github.com/BaziForYou/MugShotBase64)
-   * Place in your `resources` folder
-   * Add to `server.cfg`: `ensure MugShotBase64`
+   - Download from: https://github.com/BaziForYou/MugShotBase64
+   - Place in your `resources` folder
+   - Add to `server.cfg`: `ensure MugShotBase64`
 
 ### Step 3: Database Setup
 
-1.  Import the SQL file to create necessary tables:
+1. Import the SQL file to create necessary tables:
+   ```sql
+   -- The script will auto-create tables on first run
+   -- Or manually import the provided SQL file
+   ```
 
-    ```sql
-    CREATE TABLE IF NOT EXISTS `dusa_hunting` (
-      `id` int(11) NOT NULL AUTO_INCREMENT,
-      `identifier` varchar(50) NOT NULL,
-      `name` varchar(50) NOT NULL,
-      `title` varchar(50) DEFAULT 'Avcı',
-      `level` int(11) DEFAULT 1,
-      `experience` int(11) DEFAULT 0,
-      `shot` int(11) DEFAULT 0,
-      `pet` varchar(50) DEFAULT NULL,
-      `progress` int(11) GENERATED ALWAYS AS (`level` + `experience`) STORED,
-      `created_at` timestamp NULL DEFAULT current_timestamp(),
-      `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-      PRIMARY KEY (`id`),
-      UNIQUE KEY `identifier` (`identifier`),
-      KEY `idx_identifier` (`identifier`),
-      KEY `idx_progress` (`progress`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-    ```
+2. Tables created:
+   - `hunting_data` - Player hunting progress and levels
+   - `hunting_quests` - Player quest progress
 
 ### Step 4: Add Items to Your Inventory
 
 Add the following items to your inventory system's item definitions:
 
 #### Weapons
-
 ```lua
 ['WEAPON_DHR31'] = {
     label = 'Hunting Rifle',
@@ -83,8 +70,20 @@ Add the following items to your inventory system's item definitions:
 }
 ```
 
-#### Tools & Equipment
+#### Ammunition
+```lua
+['ammo-heavysniper'] = {
+    label = 'Heavy Sniper Ammo',
+    weight = 100,
+    type = 'item',
+    image = 'ammo-heavysniper.png',
+    unique = false,
+    useable = true,
+    description = 'Ammunition for hunting rifles'
+}
+```
 
+#### Tools & Equipment
 ```lua
 ['hunting_license'] = {
     label = 'Hunting License',
@@ -170,7 +169,6 @@ Add the following items to your inventory system's item definitions:
 #### Animal Meats & Products
 
 <details>
-
 <summary>Deer Items</summary>
 
 ```lua
@@ -229,11 +227,9 @@ Add the following items to your inventory system's item definitions:
     description = 'Cooked deer leg'
 }
 ```
-
 </details>
 
 <details>
-
 <summary>Bear Items</summary>
 
 ```lua
@@ -292,11 +288,9 @@ Add the following items to your inventory system's item definitions:
     description = 'Cooked bear leg'
 }
 ```
-
 </details>
 
 <details>
-
 <summary>Rabbit Items</summary>
 
 ```lua
@@ -355,11 +349,9 @@ Add the following items to your inventory system's item definitions:
     description = 'Cooked rabbit beef'
 }
 ```
-
 </details>
 
 <details>
-
 <summary>Other Animals (Boar, Coyote, Lion, Mountain Lion, Oryx, Antelope, Red Panda)</summary>
 
 ```lua
@@ -430,7 +422,6 @@ Add the following items to your inventory system's item definitions:
     description = 'Animal hide that can be sold'
 }
 ```
-
 </details>
 
 ### Step 5: Server Configuration
@@ -449,46 +440,46 @@ ensure dusa_bridge
 ensure dusa_hunting
 ```
 
-**Important**: **The order matters!** Dependencies must be started before `dusa_hunting`.
+**Important**: The order matters! Dependencies must be started before `dusa_hunting`.
 
 ### Step 6: Configure the Script
 
 1. Navigate to `resources/dusa_hunting/configurations/`
 2. Edit the configuration files:
-   * `config_shared.lua` - Shared configuration (species, shop, quests, etc.)
-   * `config_client.lua` - Client-side configuration (hunting zones, areas, etc.)
-   * `config_server.lua` - Server-side configuration (rewards, levels, etc.)
-3.  Configure hunting zones in `config_client.lua`:
+   - `config_shared.lua` - Shared configuration (species, shop, quests, etc.)
+   - `config_client.lua` - Client-side configuration (hunting zones, areas, etc.)
+   - `config_server.lua` - Server-side configuration (rewards, levels, etc.)
 
-    ```lua
-    HuntingZones = {
-        ['HuntingZone1'] = {
-            name = 'Deer Zone',
-            type = 'deer',
-            coords = vec3(-575.706, 5460.014, 60.558),
-            range = 250.0,
-            animal = {
-                model = 'a_c_deer',
-                maxCount = 12,
-                xp = 10,
-                canAttack = false,
-                isFleeing = false,
-            }
-        },
-        -- Add more zones...
-    }
-    ```
-4.  Configure shop location in `config_shared.lua`:
+3. Configure hunting zones in `config_client.lua`:
+   ```lua
+   HuntingZones = {
+       ['HuntingZone1'] = {
+           name = 'Deer Zone',
+           type = 'deer',
+           coords = vec3(-575.706, 5460.014, 60.558),
+           range = 250.0,
+           animal = {
+               model = 'a_c_deer',
+               maxCount = 12,
+               xp = 10,
+               canAttack = false,
+               isFleeing = false,
+           }
+       },
+       -- Add more zones...
+   }
+   ```
 
-    ```lua
-    Shared.Shop = {
-        Ped = {
-            model = 'a_m_m_hillbilly_01',
-            coords = vec4(-675.868, 5839.285, 17.320, 134.746),
-            -- ...
-        }
-    }
-    ```
+4. Configure shop location in `config_shared.lua`:
+   ```lua
+   Shared.Shop = {
+       Ped = {
+           model = 'a_m_m_hillbilly_01',
+           coords = vec4(-675.868, 5839.285, 17.320, 134.746),
+           -- ...
+       }
+   }
+   ```
 
 ### Step 7: Restart Your Server
 
@@ -496,28 +487,25 @@ ensure dusa_hunting
 2. Check the console for any errors
 3. Join the server and test the hunting system
 
+### Step 8: Verify Installation
+
+1. **Check for hunting shop NPC** at the configured location
+2. **Test buying hunting equipment**
+3. **Visit a hunting zone** and verify animals spawn
+4. **Hunt an animal** to test the complete workflow
+
 ## Post-Installation
 
 ### Optional: Customize Localization
 
 Edit locale files in `resources/dusa_hunting/locales/`:
-
-* `en.json` - English (default)
-* `tr.json` - Turkish
+- `en.json` - English (default)
+- `tr.json` - Turkish
 
 Change locale in `config_shared.lua`:
-
 ```lua
 Shared.Locale = 'en' -- or 'tr'
 ```
-
-### How to add custom locale?:
-
-1. Navigate to resources/dusa\_hunting/locales
-2. Copy & paste `en.json`&#x20;
-3. Rename it to your language code (like `fr.json`, `pt.json` etc.)
-4. Translate content of new locale file to your language
-5. Set Shared.Locale above to your language code
 
 ### Optional: Add Custom Animals
 
@@ -526,14 +514,13 @@ See the [Configuration Guide](configuration.md) for adding custom animal types.
 ### Optional: Vehicle Keys Integration
 
 The script supports multiple vehicle key systems. If you use one, it will automatically integrate. Supported systems:
-
-* dusa\_vehiclekeys
-* wasabi\_carlock
-* qb-vehiclekeys
-* qs-vehiclekeys
-* vehicles\_keys
-* ak47\_vehiclekeys
-* Renewed-Vehiclekeys
+- dusa_vehiclekeys
+- wasabi_carlock
+- qb-vehiclekeys
+- qs-vehiclekeys
+- vehicles_keys
+- ak47_vehiclekeys
+- Renewed-Vehiclekeys
 
 ## Troubleshooting
 
@@ -541,6 +528,6 @@ If you encounter issues during installation, see the [Common Issues](common-issu
 
 ## Next Steps
 
-* Review the [API Reference](api-reference.md) for integration with other scripts
-* Check the [Configuration Guide](configuration.md) for customization options
-* Join the support [Discord](https://discord.gg/dusa) for help and updates
+- Review the [API Reference](api-reference.md) for integration with other scripts
+- Check the [Configuration Guide](configuration.md) for customization options
+- Join the support Discord for help and updates
