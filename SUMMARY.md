@@ -70,3 +70,8 @@
   * [Installation](scripts/editor-7/installation.md)
   * [Configuration & Exports (ESX)](scripts/editor-7/configuration-and-exports-esx.md)
   * [Configuration & Exports (QB)](scripts/editor-7/configuration-and-exports-qb.md)
+* [Hunting System](scripts/hunting/README.md)
+  * [Installation](scripts/hunting/installation.md)
+  * [Configuration](scripts/hunting/configuration.md)
+  * [API Reference](scripts/hunting/api-reference.md)
+  * [Common Issues](scripts/hunting/common-issues.md)
