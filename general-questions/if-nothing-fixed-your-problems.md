@@ -1,0 +1,13 @@
+---
+icon: person-circle-question
+---
+
+# If nothing fixed your problems
+
+### I followed all steps but nothing is working, what can I do? <a href="#i-followed-all-steps-but-nothing-is-working-what-can-i-do" id="i-followed-all-steps-but-nothing-is-working-what-can-i-do"></a>
+
+If you have followed all steps, then you just have a virus in your server. Try creating a clean server with only the default framework scripts and Dusa's scripts
+
+#### How to verify if I have a virus in my server? <a href="#how-to-verify-if-i-have-a-virus-in-my-server" id="how-to-verify-if-i-have-a-virus-in-my-server"></a>
+
+Open the file which is being mentioned by Dusa's script with **notepad**, scroll down to the bottom. If there is partially readable code (for example "`local...`"), that's a virus added by something else, because normally the entire file would be encrypted. In this case, you'll have to solve that issue before being able to use any script
