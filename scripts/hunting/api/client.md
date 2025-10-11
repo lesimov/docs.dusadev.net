@@ -1,8 +1,12 @@
+---
+icon: circle-small
+---
+
 # Client-Side API
 
 This page documents all client-side exports and events available in the Dusa Hunting System.
 
----
+***
 
 ## Client Exports
 
@@ -15,6 +19,7 @@ exports['dusa_hunting']:OpenMenu()
 ```
 
 **Usage Example**:
+
 ```lua
 -- Open hunting shop from a custom command
 RegisterCommand('openhuntingshop', function()
@@ -23,12 +28,13 @@ end, false)
 ```
 
 **Use Cases**:
-- Custom menu integration
-- NPC interactions
-- Custom keybinds
-- Job-specific shop access
 
----
+* Custom menu integration
+* NPC interactions
+* Custom keybinds
+* Job-specific shop access
+
+***
 
 ### UpdateQuestProgress
 
@@ -39,12 +45,14 @@ exports['dusa_hunting']:UpdateQuestProgress(questType, animalType, amount)
 ```
 
 **Parameters**:
-- `questType` (string) - Type of quest: `'hunt'`, `'trap'`, or `'cook'`
-- `animalType` (string) - Animal type (e.g., `'deer'`, `'bear'`, `'rabbit'`)
-  - Can be `nil` for cook quests
-- `amount` (number) - Amount to add to progress
+
+* `questType` (string) - Type of quest: `'hunt'`, `'trap'`, or `'cook'`
+* `animalType` (string) - Animal type (e.g., `'deer'`, `'bear'`, `'rabbit'`)
+  * Can be `nil` for cook quests
+* `amount` (number) - Amount to add to progress
 
 **Usage Examples**:
+
 ```lua
 -- Update hunt quest progress
 exports['dusa_hunting']:UpdateQuestProgress('hunt', 'deer', 1)
@@ -57,12 +65,13 @@ exports['dusa_hunting']:UpdateQuestProgress('cook', nil, 5)
 ```
 
 **Use Cases**:
-- Custom hunting events
-- Admin commands
-- Special quest triggers
-- Integration with other scripts
 
----
+* Custom hunting events
+* Admin commands
+* Special quest triggers
+* Integration with other scripts
+
+***
 
 ## Client Events
 
@@ -75,6 +84,7 @@ TriggerEvent('hunting:client:OpenMenu')
 ```
 
 **Usage Example**:
+
 ```lua
 -- Trigger from another script
 TriggerEvent('hunting:client:OpenMenu')
@@ -85,7 +95,7 @@ AddEventHandler('my-npc:openHuntingShop', function()
 end)
 ```
 
----
+***
 
 ### hunting:client:PlaceTrap
 
@@ -96,6 +106,7 @@ TriggerEvent('hunting:client:PlaceTrap')
 ```
 
 **Usage Example**:
+
 ```lua
 -- Custom trap placement from another script
 RegisterCommand('placetrap', function()
@@ -108,9 +119,9 @@ end, false)
 
 **Note**: The script already handles trap placement when using the `hunting_trap` item. Use this event only for custom implementations.
 
----
+***
 
-### dusa_hunting:client:openBinocular
+### dusa\_hunting:client:openBinocular
 
 Opens the binocular view.
 
@@ -119,6 +130,7 @@ TriggerEvent('dusa_hunting:client:openBinocular')
 ```
 
 **Usage Example**:
+
 ```lua
 -- Open binoculars from custom keybind
 RegisterCommand('usebinoculars', function()
@@ -128,9 +140,9 @@ end, false)
 
 **Note**: Requires player to have `binocular` item in inventory.
 
----
+***
 
-### dusa_hunting:client:PlaceBait
+### dusa\_hunting:client:PlaceBait
 
 Places hunting bait at the player's location.
 
@@ -139,6 +151,7 @@ TriggerEvent('dusa_hunting:client:PlaceBait')
 ```
 
 **Usage Example**:
+
 ```lua
 -- Custom bait placement
 RegisterCommand('placebait', function()
@@ -148,7 +161,7 @@ end, false)
 
 **Note**: The script already handles bait placement when using the `hunting_bait` item. Use this event only for custom implementations.
 
----
+***
 
 ### hunting:client:openLaptop
 
@@ -159,6 +172,7 @@ TriggerEvent('hunting:client:openLaptop')
 ```
 
 **Usage Example**:
+
 ```lua
 -- Open laptop from custom interaction
 RegisterCommand('huntinglaptop', function()
@@ -167,12 +181,13 @@ end, false)
 ```
 
 **Requirements**:
-- `Shared.EnableDUILaptop = true` in config
-- Player must have `hunting_laptop` item
 
----
+* `Shared.EnableDUILaptop = true` in config
+* Player must have `hunting_laptop` item
 
-### dusa_hunting:showHuntingLicense
+***
+
+### dusa\_hunting:showHuntingLicense
 
 Shows a hunting license to nearby players.
 
@@ -181,12 +196,14 @@ TriggerEvent('dusa_hunting:showHuntingLicense', targetPlayerId)
 ```
 
 **Parameters**:
-- `targetPlayerId` (number) - Server ID of the player to show the license to
+
+* `targetPlayerId` (number) - Server ID of the player to show the license to
 
 **Usage Example**:
+
 ```lua
 -- Show license to nearest player
-local nearbyPlayers = GetNearbyPlayers(5.0)
+local nearbyPlayers = lib.getNearbyPlayers(5.0)
 if #nearbyPlayers > 0 then
     TriggerEvent('dusa_hunting:showHuntingLicense', nearbyPlayers[1].id)
 end
@@ -194,7 +211,7 @@ end
 
 **Note**: The script handles this automatically when using the `hunting_license` item.
 
----
+***
 
 ## Integration Examples
 
@@ -245,7 +262,7 @@ end, false)
 ```lua
 -- Only allow hunters to open shop
 RegisterCommand('huntshop', function()
-    local playerJob = GetPlayerJob() -- Your framework function
+    local playerJob = Framework.Player.Job.Name or GetPlayerJob() -- Your framework function
 
     if playerJob == 'hunter' then
         exports['dusa_hunting']:OpenMenu()
@@ -278,11 +295,12 @@ exports['qb-target']:AddBoxZone("hunting_shop_npc", vector3(-675.87, 5839.29, 17
 })
 ```
 
----
+***
 
 ## Event Flow
 
 ### Shop Opening Flow
+
 ```
 Player triggers command/event
     ↓
@@ -298,6 +316,7 @@ Items added to inventory
 ```
 
 ### Quest Progress Flow
+
 ```
 Player performs action (hunt/trap/cook)
     ↓
@@ -313,6 +332,7 @@ Quest completion check
 ```
 
 ### Trap Placement Flow
+
 ```
 Player uses trap item OR triggers event
     ↓
@@ -327,59 +347,60 @@ Trap spawned and synced to server
 Trap active and waiting for animals
 ```
 
----
+***
 
 ## Best Practices
 
-1. **Always check player state** before triggering events:
-   ```lua
-   if not IsPedInAnyVehicle(PlayerPedId()) then
-       TriggerEvent('hunting:client:PlaceTrap')
-   end
-   ```
+1.  **Always check player state** before triggering events:
 
-2. **Validate item possession** for item-related events:
-   ```lua
-   local hasBinoculars = HasItem('binocular')
-   if hasBinoculars then
-       TriggerEvent('dusa_hunting:client:openBinocular')
-   end
-   ```
+    ```lua
+    if not IsPedInAnyVehicle(PlayerPedId()) then
+        TriggerEvent('hunting:client:PlaceTrap')
+    end
+    ```
+2.  **Validate item possession** for item-related events:
 
-3. **Use exports for cleaner code**:
-   ```lua
-   -- Preferred
-   exports['dusa_hunting']:OpenMenu()
+    ```lua
+    local hasBinoculars = HasItem('binocular')
+    if hasBinoculars then
+        TriggerEvent('dusa_hunting:client:openBinocular')
+    end
+    ```
+3.  **Use exports for cleaner code**:
 
-   -- Alternative (more verbose)
-   TriggerEvent('hunting:client:OpenMenu')
-   ```
+    ```lua
+    -- Preferred
+    exports['dusa_hunting']:OpenMenu()
 
-4. **Handle errors gracefully**:
-   ```lua
-   local success = pcall(function()
-       exports['dusa_hunting']:UpdateQuestProgress('hunt', 'deer', 1)
-   end)
+    -- Alternative (more verbose)
+    TriggerEvent('hunting:client:OpenMenu')
+    ```
+4.  **Handle errors gracefully**:
 
-   if not success then
-       print('Failed to update quest progress')
-   end
-   ```
+    ```lua
+    local success = pcall(function()
+        exports['dusa_hunting']:UpdateQuestProgress('hunt', 'deer', 1)
+    end)
 
----
+    if not success then
+        print('Failed to update quest progress')
+    end
+    ```
+
+***
 
 ## Notes
 
-- All client events are **local** (use `TriggerEvent`, not `TriggerServerEvent`)
-- Quest progress updates are automatically synced to server
-- UI elements use NUI callbacks (handled internally)
-- Some events require specific items in inventory
-- Check configuration for enabled/disabled features (e.g., DUI laptop)
+* All client events are **local** (use `TriggerEvent`, not `TriggerServerEvent`)
+* Quest progress updates are automatically synced to server
+* UI elements use NUI callbacks (handled internally)
+* Some events require specific items in inventory
+* Check configuration for enabled/disabled features (e.g., DUI laptop)
 
----
+***
 
 ## Next Steps
 
-- Review [Server-Side API](server.md) for server callbacks
-- Check [Shared Functions](shared.md) for utility functions
-- See [Configuration](../configuration/client.md) for client settings
+* Review [Server-Side API](server.md) for server callbacks
+* Check [Shared Functions](shared.md) for utility functions
+* See [Configuration](../configuration/client.md) for client settings

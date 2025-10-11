@@ -1,10 +1,14 @@
+---
+icon: circle-small
+---
+
 # Server Configuration
 
 File: `configurations/config_server.lua`
 
 This file contains server-side configuration including level system, animal rewards, cooking configuration, and quality-based bonuses.
 
----
+***
 
 ## Level System
 
@@ -22,19 +26,21 @@ Config.Title = {
 ```
 
 **Configuration**:
-- `MaximumLevel` - Maximum hunting level players can reach
-- `Title` - Title names and their level requirements
-  - Titles are localized in `locales/` files
+
+* `MaximumLevel` - Maximum hunting level players can reach
+* `Title` - Title names and their level requirements
+  * Titles are localized in `locales/` files
 
 **Title Progression**:
-- Level 1: Beginner
-- Level 2-3: Novice
-- Level 4-5: Apprentice
-- Level 6-7: Adept
-- Level 8-9: Expert
-- Level 10: Master
 
----
+* Level 1: Beginner
+* Level 2-3: Novice
+* Level 4-5: Apprentice
+* Level 6-7: Adept
+* Level 8-9: Expert
+* Level 10: Master
+
+***
 
 ## Quality-Based Rewards
 
@@ -43,17 +49,19 @@ Config.IncreaseAmountByQuality = true  -- Enable quality-based bonus amounts
 ```
 
 When enabled, higher quality kills grant bonus items:
-- **Quality 1**: +0 bonus items (base amount)
-- **Quality 2**: +1 bonus item
-- **Quality 3**: +2 bonus items
+
+* **Quality 1**: +0 bonus items (base amount)
+* **Quality 2**: +1 bonus item
+* **Quality 3**: +2 bonus items
 
 **Example**:
-- Deer beef base amount: 3
-- Quality 1 kill: 3 beef
-- Quality 2 kill: 4 beef
-- Quality 3 kill: 5 beef
 
----
+* Deer beef base amount: 3
+* Quality 1 kill: 3 beef
+* Quality 2 kill: 4 beef
+* Quality 3 kill: 5 beef
+
+***
 
 ## Animal Rewards
 
@@ -112,35 +120,37 @@ Config.AnimalRewards = {
 Each animal can have:
 
 **Meat Parts**:
-- `amount` - Base number of items
-- `model` - Prop model for the raw meat
-- `item` - Item name (must match inventory item)
-- `cook` - Cooking configuration (optional)
-  - `method` - Array of cooking methods: `'grill'`, `'stick'`
-  - `cookingTime` - Time in seconds to cook
-  - `cookedModel` - Prop model for cooked meat
-  - `cookedItem` - Cooked item name
+
+* `amount` - Base number of items
+* `model` - Prop model for the raw meat
+* `item` - Item name (must match inventory item)
+* `cook` - Cooking configuration (optional)
+  * `method` - Array of cooking methods: `'grill'`, `'stick'`
+  * `cookingTime` - Time in seconds to cook
+  * `cookedModel` - Prop model for cooked meat
+  * `cookedItem` - Cooked item name
 
 **Hide**:
-- `amount` - Number of hides to give
 
----
+* `amount` - Number of hides to give
+
+***
 
 ## Cooking Methods
 
 Two cooking methods are available:
 
 1. **Grill** (`'grill'`)
-   - Requires `primitive_grill` or `advanced_grill`
-   - Can cook multiple items at once
-   - Best for ribs and larger cuts
-
+   * Requires `primitive_grill` or `advanced_grill`
+   * Can cook multiple items at once
+   * Best for ribs and larger cuts
 2. **Stick** (`'stick'`)
-   - Requires `campfire`
-   - Cooks one item at a time
-   - Best for small cuts and quick cooking
+   * Requires `campfire`
+   * Cooks one item at a time
+   * Best for small cuts and quick cooking
 
 **Example Configuration**:
+
 ```lua
 cook = {
     method = {'grill', 'stick'},  -- Can use both methods
@@ -150,7 +160,7 @@ cook = {
 }
 ```
 
----
+***
 
 ## Complete Animal Examples
 
@@ -202,7 +212,7 @@ cook = {
 }
 ```
 
----
+***
 
 ## Quality System
 
@@ -210,81 +220,89 @@ The quality system is based on shot location:
 
 ### Quality Levels
 
-- **Quality 3 (Perfect)**:
-  - Headshot (bones 99 or 98)
-  - Trapped animals
-  - Grants best rewards and highest sell price
-
-- **Quality 2 (Good)**:
-  - Leg shot (bones 1-20)
-  - Decent rewards and sell price
-
-- **Quality 1 (Normal)**:
-  - Body shot (all other bones)
-  - Base rewards and sell price
+* **Quality 3 (Perfect)**:
+  * Headshot (bones 99 or 98)
+  * Trapped animals
+  * Grants best rewards and highest sell price
+* **Quality 2 (Good)**:
+  * Leg shot (bones 1-20)
+  * Decent rewards and sell price
+* **Quality 1 (Normal)**:
+  * Body shot (all other bones)
+  * Base rewards and sell price
 
 ### Level Bonuses
 
 Players receive quality bonuses based on their hunting level:
-- Every 3 levels grants +1 quality (up to max quality 3)
+
+* Every 3 levels grants +1 quality (up to max quality 3)
 
 **Example**:
-- Level 1 player body shot = Quality 1
-- Level 3 player body shot = Quality 2
-- Level 6 player body shot = Quality 3
-- Level 9 player leg shot = Quality 3 (2 + 1 from level)
+
+* Level 1 player body shot = Quality 1
+* Level 3 player body shot = Quality 2
+* Level 6 player body shot = Quality 3
+* Level 9 player leg shot = Quality 3 (2 + 1 from level)
 
 **Note**: Quality is calculated in `game/client/main.lua` in the `CheckHitAnimalQuality` function.
 
----
+***
 
 ## Sell Price Calculation
 
 Final sell price = Base price × Quality multiplier
 
 **Example** (Deer Beef):
-- Base price: $45 (from `Shared.Shop.Sell`)
-- Quality 1: $45 × 1.0 = $45
-- Quality 2: $45 × 1.5 = $67.5
-- Quality 3: $45 × 2.0 = $90
+
+* Base price: $45 (from `Shared.Shop.Sell`)
+* Quality 1: $45 × 1.0 = $45
+* Quality 2: $45 × 1.5 = $67.5
+* Quality 3: $45 × 2.0 = $90
 
 Quality multipliers are configured in [Shared Configuration](shared.md#quality-multipliers).
 
----
+***
 
 ## XP Calculation
 
 XP is awarded from multiple sources:
 
 ### Hunting XP
-- Base XP from zone configuration (`animal.xp`)
-- No quality modifiers for hunting XP
+
+* Base XP from zone configuration (`animal.xp`)
+* No quality modifiers for hunting XP
 
 ### Selling XP
+
 Quality-based XP when selling items:
 
 **Quality 3 Items**:
-- 20% chance to gain 3-4 XP per 10 items sold
-- 30% chance for 1-2 XP if selling 5-9 items
+
+* 20% chance to gain 3-4 XP per 10 items sold
+* 30% chance for 1-2 XP if selling 5-9 items
 
 **Quality 2 Items**:
-- 15% chance to gain 1-2 XP per 10 items sold
-- 20% chance for 1 XP if selling 5-9 items
+
+* 15% chance to gain 1-2 XP per 10 items sold
+* 20% chance for 1 XP if selling 5-9 items
 
 **Quality 1 Items**:
-- No XP from selling
+
+* No XP from selling
 
 ### Quest XP
-- Defined per quest in `Shared.Quests`
-- Awarded when quest is completed
 
----
+* Defined per quest in `Shared.Quests`
+* Awarded when quest is completed
+
+***
 
 ## Customizing Rewards
 
 To add a new animal reward:
 
 1. **Add to AnimalRewards**:
+
 ```lua
 Config.AnimalRewards['wolf'] = {
     meat = {
@@ -321,41 +339,39 @@ Config.AnimalRewards['wolf'] = {
 ```
 
 2. **Add sell prices** in [Shared Configuration](shared.md#sellable-items)
-
 3. **Add items to inventory** (see [Installation Guide](../installation.md))
 
----
+***
 
 ## Best Practices
 
 ### Balancing Economy
 
 1. **Consider rarity**:
-   - Common animals (deer, rabbit) = lower prices
-   - Rare animals (lion, bear) = higher prices
-
+   * Common animals (deer, rabbit) = lower prices
+   * Rare animals (lion, bear) = higher prices
 2. **Consider difficulty**:
-   - Passive animals = lower rewards
-   - Aggressive animals = higher rewards
-
+   * Passive animals = lower rewards
+   * Aggressive animals = higher rewards
 3. **Quality system**:
-   - Encourage skillful hunting (headshots)
-   - Reward experienced players (level bonuses)
+   * Encourage skillful hunting (headshots)
+   * Reward experienced players (level bonuses)
 
 ### Meat Amounts
 
 Balance meat amounts based on:
-- Animal size (bear > deer > rabbit)
-- Realism (4 legs, multiple cuts of beef, etc.)
-- Server economy
+
+* Animal size (bear > deer > rabbit)
+* Realism (4 legs, multiple cuts of beef, etc.)
+* Server economy
 
 ### Cooking Times
 
-- Small items (rabbit leg): 5-10 seconds
-- Medium items (deer beef): 10-15 seconds
-- Large items (bear rib): 15-20 seconds
+* Small items (rabbit leg): 5-10 seconds
+* Medium items (deer beef): 10-15 seconds
+* Large items (bear rib): 15-20 seconds
 
----
+***
 
 ## Advanced Configuration
 
@@ -386,10 +402,10 @@ hide = {
 }
 ```
 
----
+***
 
 ## Next Steps
 
-- Configure [Client Settings](client.md) for hunting zones
-- Review [Shared Configuration](shared.md) for shop and quests
-- Check [API Reference](../api-reference.md) for custom integrations
+* Configure [Client Settings](client.md) for hunting zones
+* Review [Shared Configuration](shared.md) for shop and quests
+* Check [API Reference](../api-reference.md) for custom integrations

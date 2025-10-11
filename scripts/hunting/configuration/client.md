@@ -1,10 +1,14 @@
+---
+icon: circle-small
+---
+
 # Client Configuration
 
 File: `configurations/config_client.lua`
 
 This file contains client-side configuration including hunting zones, animal AI, tournament settings, and more.
 
----
+***
 
 ## General Settings
 
@@ -16,14 +20,15 @@ Config.ObjectiveAlignment = "center-right"  -- UI objective alignment
 ```
 
 **ObjectiveAlignment Options**:
-- `"center-right"`
-- `"center-left"`
-- `"top-right"`
-- `"top-left"`
-- `"bottom-right"`
-- `"bottom-left"`
 
----
+* `"center-right"`
+* `"center-left"`
+* `"top-right"`
+* `"top-left"`
+* `"bottom-right"`
+* `"bottom-left"`
+
+***
 
 ## Hunting Restrictions
 
@@ -41,12 +46,13 @@ Config.JobName = 'hunter'  -- Job name (if RequireJob is true)
 ```
 
 **Important Notes**:
-- `OnlyHuntByHuntingWeapons` - When true, only weapons in `HuntingWeapons` table can kill animals
-- `DisableHuntingRiflePVP` - Prevents hunting rifles from being used against players
-- `OnlyHunterCanCollect` - Only the player who killed the animal can collect the carcass
-- `RequireJob` - Set to true if you want only specific job to hunt
 
----
+* `OnlyHuntByHuntingWeapons` - When true, only weapons in `HuntingWeapons` table can kill animals
+* `DisableHuntingRiflePVP` - Prevents hunting rifles from being used against players
+* `OnlyHunterCanCollect` - Only the player who killed the animal can collect the carcass
+* `RequireJob` - Set to true if you want only specific job to hunt
+
+***
 
 ## Target System
 
@@ -54,9 +60,9 @@ Config.JobName = 'hunter'  -- Job name (if RequireJob is true)
 Config.UseTarget = false  -- Use target system instead of dusa_bridge interactions
 ```
 
-Set to `true` if you're using a target system (ox_target, qb-target, etc.) instead of the default interaction system.
+Set to `true` if you're using a target system (ox\_target, qb-target, etc.) instead of the default interaction system.
 
----
+***
 
 ## Trapping & Baiting
 
@@ -66,10 +72,11 @@ Config.BaitChance = 30  -- Chance (%) for bait to attract animals
 ```
 
 **Configuration**:
-- `TrapDamage` - How much damage traps deal (animals have 100 HP)
-- `BaitChance` - Percentage chance for bait to successfully attract animals (default: 30%)
 
----
+* `TrapDamage` - How much damage traps deal (animals have 100 HP)
+* `BaitChance` - Percentage chance for bait to successfully attract animals (default: 30%)
+
+***
 
 ## Hunting Zones
 
@@ -124,22 +131,24 @@ Config.HuntingZones = {
 ```
 
 **Zone Configuration**:
-- `name` - Display name for the zone
-- `type` - Must match a species type from `Shared.Species`
-- `coords` - Center point of the zone
-- `range` - Radius of the zone in meters
-- `debug` - Set to `true` to see zone sphere for testing
+
+* `name` - Display name for the zone
+* `type` - Must match a species type from `Shared.Species`
+* `coords` - Center point of the zone
+* `range` - Radius of the zone in meters
+* `debug` - Set to `true` to see zone sphere for testing
 
 **Animal Configuration**:
-- `model` - Ped model to spawn (must match species model)
-- `maxCount` - Maximum number of animals in this zone
-  - **⚠️ WARNING**: Don't set too high (causes performance issues)
-  - Recommended: 5-15 animals per zone
-- `xp` - Experience points awarded per kill
-- `canAttack` - Whether animal can attack players (bears, lions, etc.)
-- `isFleeing` - Whether animal runs away when shot
 
----
+* `model` - Ped model to spawn (must match species model)
+* `maxCount` - Maximum number of animals in this zone
+  * **⚠️ WARNING**: Don't set too high (causes performance issues)
+  * Recommended: 5-15 animals per zone
+* `xp` - Experience points awarded per kill
+* `canAttack` - Whether animal can attack players (bears, lions, etc.)
+* `isFleeing` - Whether animal runs away when shot
+
+***
 
 ## Adding Custom Animals
 
@@ -218,7 +227,7 @@ table.insert(Shared.Shop.Sell, {
 
 Add wolf items to your inventory system (see [Installation Guide](../installation.md) for item format).
 
----
+***
 
 ## Animal Wiki
 
@@ -245,7 +254,7 @@ Config.Wiki = {
 }
 ```
 
----
+***
 
 ## Tournament Configuration
 
@@ -285,13 +294,14 @@ Config.Tournament = {
 ```
 
 **Configuration**:
-- `AvailableSpecies` - Animals that can be used in tournaments
-- `RewardRange` - Min/max reward money for tournaments
-- `DurationRange` - Min/max duration in minutes
-- `MaxPlayers` - Maximum players per tournament
-- `MinPlayers` - Minimum players to start tournament
 
----
+* `AvailableSpecies` - Animals that can be used in tournaments
+* `RewardRange` - Min/max reward money for tournaments
+* `DurationRange` - Min/max duration in minutes
+* `MaxPlayers` - Maximum players per tournament
+* `MinPlayers` - Minimum players to start tournament
+
+***
 
 ## Butchering Areas
 
@@ -309,7 +319,7 @@ Config.Areas = {
 
 Add more butchering locations if needed.
 
----
+***
 
 ## Vehicle Carcass Attachment
 
@@ -354,13 +364,14 @@ Config.CarcassVehicleAttach = {
 ```
 
 **Configuration**:
-- `offset` - Position offset from vehicle center (x, y, z)
-- `rotation` - Rotation angles (x, y, z)
-- `alpha` - Transparency (0-255, 255 = fully visible)
+
+* `offset` - Position offset from vehicle center (x, y, z)
+* `rotation` - Rotation angles (x, y, z)
+* `alpha` - Transparency (0-255, 255 = fully visible)
 
 If an animal doesn't have specific settings, `default` is used.
 
----
+***
 
 ## Performance Tips
 
@@ -369,10 +380,10 @@ If an animal doesn't have specific settings, `default` is used.
 3. **Debug mode**: Always disable in production (`debug = false`)
 4. **CheckInterval**: Increase to reduce checks (e.g., 5 minutes instead of 1)
 
----
+***
 
 ## Next Steps
 
-- Configure [Server Settings](server.md) for rewards and levels
-- Review [Shared Configuration](shared.md) for shop and quests
-- Check [Common Issues](../common-issues.md) for troubleshooting
+* Configure [Server Settings](server.md) for rewards and levels
+* Review [Shared Configuration](shared.md) for shop and quests
+* Check [Common Issues](../common-issues.md) for troubleshooting

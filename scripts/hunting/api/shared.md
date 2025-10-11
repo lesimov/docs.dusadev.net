@@ -1,8 +1,12 @@
+---
+icon: circle-small
+---
+
 # Shared Functions
 
 This page documents shared utility functions available in both client and server contexts.
 
----
+***
 
 ## Weapon Functions
 
@@ -15,13 +19,15 @@ local isHuntingWeapon = Functions.IsHuntingWeapon(weaponHash)
 ```
 
 **Parameters**:
-- `weaponHash` (string|number) - Weapon name or hash
+
+* `weaponHash` (string|number) - Weapon name or hash
 
 **Returns**: `boolean` - Whether the weapon is a hunting weapon
 
 **Usage Examples**:
 
 **Client-Side**:
+
 ```lua
 -- Check if player is holding a hunting weapon
 local currentWeapon = GetSelectedPedWeapon(PlayerPedId())
@@ -36,6 +42,7 @@ end
 ```
 
 **Server-Side**:
+
 ```lua
 -- Validate weapon before processing hunt
 RegisterNetEvent('hunting:validateKill', function(weaponUsed)
@@ -49,8 +56,8 @@ RegisterNetEvent('hunting:validateKill', function(weaponUsed)
 end)
 ```
 
-**Configuration**:
-Hunting weapons are defined in [Client Config](../configuration/client.md#hunting-restrictions):
+**Configuration**: Hunting weapons are defined in [Client Config](../configuration/client.md#hunting-restrictions):
+
 ```lua
 Config.HuntingWeapons = {
     'WEAPON_DHR31',
@@ -59,12 +66,13 @@ Config.HuntingWeapons = {
 ```
 
 **Use Cases**:
-- Validating kills
-- UI indicators
-- Permission checks
-- Custom mechanics
 
----
+* Validating kills
+* UI indicators
+* Permission checks
+* Custom mechanics
+
+***
 
 ## Inventory Functions
 
@@ -77,13 +85,15 @@ local imagePath = Functions.GetInventoryImage(itemName)
 ```
 
 **Parameters**:
-- `itemName` (string) - Item name (e.g., `'deer_beef'`)
+
+* `itemName` (string) - Item name (e.g., `'deer_beef'`)
 
 **Returns**: `string` - Full NUI image path
 
 **Usage Examples**:
 
 **Client-Side**:
+
 ```lua
 -- Get image for UI
 local imagePath = Functions.GetInventoryImage('deer_beef')
@@ -97,6 +107,7 @@ SendNUIMessage({
 ```
 
 **Server-Side**:
+
 ```lua
 -- Send item data to client with images
 local items = {
@@ -107,8 +118,8 @@ local items = {
 TriggerClientEvent('myResource:showItems', source, items)
 ```
 
-**Configuration**:
-Image extension can be forced in [Shared Config](../configuration/shared.md#inventory-image-extension):
+**Configuration**: Image extension can be forced in [Shared Config](../configuration/shared.md#inventory-image-extension):
+
 ```lua
 Shared.InventoryImageExtension = nil  -- Auto-detect
 -- OR
@@ -118,17 +129,19 @@ Shared.InventoryImageExtension = 'webp'  -- Force WEBP
 ```
 
 **How It Works**:
+
 1. Checks `Shared.InventoryImageExtension` for forced extension
 2. If nil, auto-detects (tries webp first, then png)
 3. Returns full nui:// path
 
 **Use Cases**:
-- Custom UIs
-- Item displays
-- Inventory integration
-- Shop systems
 
----
+* Custom UIs
+* Item displays
+* Inventory integration
+* Shop systems
+
+***
 
 ## Vehicle Functions (Server-Side)
 
@@ -141,20 +154,23 @@ local netId, vehicle = Functions.SpawnVehicle(params)
 ```
 
 **Parameters**:
-- `params` (table) - Vehicle spawn parameters
-  ```lua
-  {
-      model = 'sandking',  -- Vehicle model
-      spawnSource = vector4(x, y, z, heading),  -- Spawn location
-      warp = playerId,  -- Optional: Player ID to warp into vehicle
-      plate = 'PLATE123',  -- Optional: Custom plate
-      props = {}  -- Optional: Vehicle properties
-  }
-  ```
+
+*   `params` (table) - Vehicle spawn parameters
+
+    ```lua
+    {
+        model = 'sandking',  -- Vehicle model
+        spawnSource = vector4(x, y, z, heading),  -- Spawn location
+        warp = playerId,  -- Optional: Player ID to warp into vehicle
+        plate = 'PLATE123',  -- Optional: Custom plate
+        props = {}  -- Optional: Vehicle properties
+    }
+    ```
 
 **Returns**:
-- `netId` (number) - Network ID of the vehicle
-- `vehicle` (number) - Vehicle entity handle
+
+* `netId` (number) - Network ID of the vehicle
+* `vehicle` (number) - Vehicle entity handle
 
 **Usage Examples**:
 
@@ -193,6 +209,7 @@ local netId, veh = Functions.SpawnVehicle({
 ```
 
 **Advanced Example**:
+
 ```lua
 -- Custom hunting vehicle rental
 RegisterCommand('customrent', function(source)
@@ -221,12 +238,13 @@ end, false)
 ```
 
 **Notes**:
-- Automatically handles entity ownership
-- Supports vehicle properties
-- Includes timeout handling
-- Works with all vehicle models
 
----
+* Automatically handles entity ownership
+* Supports vehicle properties
+* Includes timeout handling
+* Works with all vehicle models
+
+***
 
 ### Functions.GiveVehicleKeys
 
@@ -237,20 +255,23 @@ Functions.GiveVehicleKeys(source, vehicle, plate)
 ```
 
 **Parameters**:
-- `source` (number) - Player server ID
-- `vehicle` (number) - Vehicle entity handle
-- `plate` (string) - Vehicle plate number
+
+* `source` (number) - Player server ID
+* `vehicle` (number) - Vehicle entity handle
+* `plate` (string) - Vehicle plate number
 
 **Supported Key Systems**:
-- dusa_vehiclekeys
-- wasabi_carlock
-- qb-vehiclekeys
-- qs-vehiclekeys
-- vehicles_keys
-- ak47_vehiclekeys
-- Renewed-Vehiclekeys
+
+* dusa\_vehiclekeys
+* wasabi\_carlock
+* qb-vehiclekeys
+* qs-vehiclekeys
+* vehicles\_keys
+* ak47\_vehiclekeys
+* Renewed-Vehiclekeys
 
 **Usage Example**:
+
 ```lua
 -- After spawning vehicle
 local netId, veh = Functions.SpawnVehicle({
@@ -263,12 +284,13 @@ Functions.GiveVehicleKeys(source, veh, plate)
 ```
 
 **How It Works**:
+
 1. Detects installed key system
 2. Calls appropriate export
 3. Automatically handles different formats
 4. Silently fails if no key system installed
 
----
+***
 
 ### Functions.RemoveVehicleKeys
 
@@ -279,15 +301,17 @@ Functions.RemoveVehicleKeys(source, vehicle, plate)
 ```
 
 **Parameters**:
-- `source` (number) - Player server ID
-- `vehicle` (number) - Vehicle entity handle
-- `plate` (string) - Vehicle plate number
 
-**Supported Systems**:
-Currently supports:
-- Renewed-Vehiclekeys
+* `source` (number) - Player server ID
+* `vehicle` (number) - Vehicle entity handle
+* `plate` (string) - Vehicle plate number
+
+**Supported Systems**: Currently supports:
+
+* Renewed-Vehiclekeys
 
 **Usage Example**:
+
 ```lua
 -- When returning rental vehicle
 local plate = GetVehicleNumberPlateText(vehicle)
@@ -297,7 +321,7 @@ DeleteEntity(vehicle)
 
 **Note**: Add your key system integration in `game/opensource/functions.lua`
 
----
+***
 
 ## Debug Functions
 
@@ -310,10 +334,12 @@ DebugLog(message, type)
 ```
 
 **Parameters**:
-- `message` (string) - Debug message
-- `type` (string) - Debug type (for filtering)
+
+* `message` (string) - Debug message
+* `type` (string) - Debug type (for filtering)
 
 **Debug Types**:
+
 ```lua
 local debugTypes = {
     ['createPed'] = true,
@@ -325,17 +351,19 @@ local debugTypes = {
 ```
 
 **Usage Example**:
+
 ```lua
 DebugLog('Animal spawned: deer', 'createPed')
 DebugLog('Weapon aimed at target', 'weaponAim')
 ```
 
 **Enable Debug Mode**:
+
 ```lua
 Shared.Debug = true
 ```
 
----
+***
 
 ## Utility Functions
 
@@ -349,8 +377,8 @@ local hasLicense = Functions.HasLicense()
 
 **Returns**: `boolean` - Always returns true (for customization)
 
-**Customization**:
-Edit in `game/opensource/functions.lua` to add license checks:
+**Customization**: Edit in `game/opensource/functions.lua` to add license checks:
+
 ```lua
 function Functions.HasLicense()
     -- Add your license check logic
@@ -359,7 +387,7 @@ function Functions.HasLicense()
 end
 ```
 
----
+***
 
 ### Functions.GetCustomTitle
 
@@ -372,6 +400,7 @@ local customTitle = Functions.GetCustomTitle()
 **Returns**: `string|boolean` - Custom title or false
 
 **Customization**:
+
 ```lua
 function Functions.GetCustomTitle()
     -- Integrate with your rank/title system
@@ -380,7 +409,7 @@ function Functions.GetCustomTitle()
 end
 ```
 
----
+***
 
 ### Functions.randomFromTable
 
@@ -391,13 +420,16 @@ local element, index = Functions.randomFromTable(table)
 ```
 
 **Parameters**:
-- `table` (table) - Table to select from
+
+* `table` (table) - Table to select from
 
 **Returns**:
-- `element` - Random element
-- `index` (number) - Index of selected element
+
+* `element` - Random element
+* `index` (number) - Index of selected element
 
 **Usage Example**:
+
 ```lua
 local scenarios = {
     'WORLD_HUMAN_AA_COFFEE',
@@ -409,7 +441,7 @@ local randomScenario = Functions.randomFromTable(scenarios)
 TaskStartScenarioInPlace(ped, randomScenario)
 ```
 
----
+***
 
 ## Integration Examples
 
@@ -493,43 +525,44 @@ RegisterNUICallback('getHuntingItems', function(data, cb)
 end)
 ```
 
----
+***
 
 ## Best Practices
 
-1. **Use shared functions for consistency**:
-   ```lua
-   -- Good
-   if Functions.IsHuntingWeapon(weapon) then
-       -- Process
-   end
+1.  **Use shared functions for consistency**:
 
-   -- Avoid
-   local isHunting = weapon == 'WEAPON_DHR31' or weapon == 'WEAPON_MUSKET'
-   ```
+    ```lua
+    -- Good
+    if Functions.IsHuntingWeapon(weapon) then
+        -- Process
+    end
 
-2. **Always check return values**:
-   ```lua
-   local netId, veh = Functions.SpawnVehicle(params)
-   if not veh or not DoesEntityExist(veh) then
-       print('Vehicle spawn failed')
-       return
-   end
-   ```
+    -- Avoid
+    local isHunting = weapon == 'WEAPON_DHR31' or weapon == 'WEAPON_MUSKET'
+    ```
+2.  **Always check return values**:
 
-3. **Handle missing key systems gracefully**:
-   ```lua
-   -- GiveVehicleKeys silently fails if no system installed
-   Functions.GiveVehicleKeys(source, veh, plate)
-   -- No need to check if key system exists
-   ```
+    ```lua
+    local netId, veh = Functions.SpawnVehicle(params)
+    if not veh or not DoesEntityExist(veh) then
+        print('Vehicle spawn failed')
+        return
+    end
+    ```
+3.  **Handle missing key systems gracefully**:
 
-4. **Use debug logging for development**:
-   ```lua
-   DebugLog('Processing animal kill: ' .. animalType, 'hunting')
-   ```
+    ```lua
+    -- GiveVehicleKeys silently fails if no system installed
+    Functions.GiveVehicleKeys(source, veh, plate)
+    -- No need to check if key system exists
+    ```
+4.  **Use debug logging for development**:
 
----
+    ```lua
+    DebugLog('Processing animal kill: ' .. animalType, 'hunting')
+    ```
+
+***
 
 ## Customization
 
@@ -549,20 +582,20 @@ function Functions.GetCustomTitle()
 end
 ```
 
----
+***
 
 ## Notes
 
-- Shared functions work in both client and server contexts
-- Vehicle functions are **server-side only**
-- Debug functions respect `Shared.Debug` setting
-- Key system integration auto-detects installed systems
-- Image paths use NUI protocol
+* Shared functions work in both client and server contexts
+* Vehicle functions are **server-side only**
+* Debug functions respect `Shared.Debug` setting
+* Key system integration auto-detects installed systems
+* Image paths use NUI protocol
 
----
+***
 
 ## Next Steps
 
-- Review [Client API](client.md) for client-specific functions
-- Check [Server API](server.md) for server-specific functions
-- See [Configuration](../configuration/shared.md) for shared settings
+* Review [Client API](client.md) for client-specific functions
+* Check [Server API](server.md) for server-specific functions
+* See [Configuration](../configuration/shared.md) for shared settings

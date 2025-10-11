@@ -1,4 +1,8 @@
-# Configuration Guide
+---
+icon: gear-code
+---
+
+# Configuration
 
 Welcome to the configuration guide for Dusa Hunting System. This section covers all configuration options available in the script.
 
@@ -6,34 +10,32 @@ Welcome to the configuration guide for Dusa Hunting System. This section covers 
 
 The hunting system uses three main configuration files located in the `configurations/` folder:
 
-- **[Shared Configuration](shared.md)** - `config_shared.lua`
-  - Species definitions
-  - Shop configuration
-  - Quest system
-  - Pet system
-  - Vehicle rental
-  - Keybinds
-
-- **[Client Configuration](client.md)** - `config_client.lua`
-  - Hunting zones
-  - Animal AI settings
-  - Tournament settings
-  - Butchering areas
-  - Vehicle carcass attachment
-
-- **[Server Configuration](server.md)** - `config_server.lua`
-  - Level system
-  - Animal rewards
-  - Quality-based bonuses
-  - Cooking configuration
+* [**Shared Configuration**](shared.md) - `config_shared.lua`
+  * Species definitions
+  * Shop configuration
+  * Quest system
+  * Pet system
+  * Vehicle rental
+  * Keybinds
+* [**Client Configuration**](client.md) - `config_client.lua`
+  * Hunting zones
+  * Animal AI settings
+  * Tournament settings
+  * Butchering areas
+  * Vehicle carcass attachment
+* [**Server Configuration**](server.md) - `config_server.lua`
+  * Level system
+  * Animal rewards
+  * Quality-based bonuses
+  * Cooking configuration
 
 ## Quick Links
 
-- [Adding Custom Animals](client.md#adding-custom-animals)
-- [Quest Configuration](shared.md#quest-configuration)
-- [Shop Setup](shared.md#shop-configuration)
-- [Hunting Zones](client.md#hunting-zones)
-- [Reward System](server.md#animal-rewards)
+* [Adding Custom Animals](client.md#adding-custom-animals)
+* [Quest Configuration](shared.md#quest-configuration)
+* [Shop Setup](shared.md#shop-configuration)
+* [Hunting Zones](client.md#hunting-zones)
+* [Reward System](server.md#animal-rewards)
 
 ## Important Notes
 
@@ -47,7 +49,7 @@ The hunting system uses three main configuration files located in the `configura
 
 Start with the [Shared Configuration](shared.md) to set up basic system settings, then move to [Client](client.md) and [Server](server.md) configurations.
 
----
+***
 
 ## Database Setup
 
@@ -75,9 +77,9 @@ CREATE TABLE IF NOT EXISTS `dusa_hunting` (
 
 This table is automatically created on first resource start.
 
----
+***
 
 ## Next Steps
 
-- Review [API Reference](../api-reference.md) for integration
-- Check [Common Issues](../common-issues.md) for troubleshooting
+* Review [API Reference](../api-reference.md) for integration
+* Check [Common Issues](../common-issues.md) for troubleshooting

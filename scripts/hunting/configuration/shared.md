@@ -1,10 +1,14 @@
+---
+icon: circle-small
+---
+
 # Shared Configuration
 
 File: `configurations/config_shared.lua`
 
 This file contains configuration shared between client and server, including species definitions, shop settings, quests, and more.
 
----
+***
 
 ## Basic Settings
 
@@ -16,7 +20,7 @@ Shared.EnableDUILaptop = true  -- Enable/disable hunting laptop with DUI
 
 **Note**: DUI laptop image quality may be low due to outdated FiveM DUI feature. You can disable it here.
 
----
+***
 
 ## System Toggles
 
@@ -27,7 +31,7 @@ Shared.EnableShopSystem = true  -- Enable/disable shop system
 
 Disable systems you don't want to use to improve performance.
 
----
+***
 
 ## Language Settings
 
@@ -36,12 +40,13 @@ Shared.Locale = 'en'  -- Available: 'en', 'tr'
 ```
 
 Supported languages:
-- `'en'` - English
-- `'tr'` - Turkish
+
+* `'en'` - English
+* `'tr'` - Turkish
 
 Add more languages by creating locale files in `locales/` folder.
 
----
+***
 
 ## Inventory Image Extension
 
@@ -50,11 +55,12 @@ Shared.InventoryImageExtension = nil  -- Options: nil (auto-detect), 'png', 'web
 ```
 
 **Options**:
-- `nil` - Auto-detect (checks webp first, then png)
-- `'png'` - Force PNG extension for all images
-- `'webp'` - Force WEBP extension for all images
 
----
+* `nil` - Auto-detect (checks webp first, then png)
+* `'png'` - Force PNG extension for all images
+* `'webp'` - Force WEBP extension for all images
+
+***
 
 ## Vehicle Rental
 
@@ -68,12 +74,13 @@ Shared.Rent = {
 ```
 
 **Configuration**:
-- `vehicle` - Any valid vehicle model
-- `price` - Rental deposit (returned when vehicle is returned)
-- `coords` - Where the vehicle spawns
-- `heading` - Vehicle spawn direction
 
----
+* `vehicle` - Any valid vehicle model
+* `price` - Rental deposit (returned when vehicle is returned)
+* `coords` - Where the vehicle spawns
+* `heading` - Vehicle spawn direction
+
+***
 
 ## Keybinds
 
@@ -104,7 +111,7 @@ Shared.Keybinds = {
 
 Players can rebind these in FiveM settings.
 
----
+***
 
 ## Shop Configuration
 
@@ -156,7 +163,7 @@ Shared.Shop.Butcher = {
 }
 ```
 
----
+***
 
 ## Shop Items
 
@@ -209,7 +216,7 @@ Shared.Shop.Items = {
 
 Add more items as needed.
 
----
+***
 
 ## Quality Multipliers
 
@@ -224,12 +231,13 @@ Shared.Shop.QualityMultipliers = {
 ```
 
 **Example**:
-- Deer beef base price: $45
-- Quality 1: $45
-- Quality 2: $67.5
-- Quality 3: $90
 
----
+* Deer beef base price: $45
+* Quality 1: $45
+* Quality 2: $67.5
+* Quality 3: $90
+
+***
 
 ## Sellable Items
 
@@ -259,7 +267,7 @@ Shared.Shop.Sell = {
 
 Base prices are multiplied by quality multipliers when selling.
 
----
+***
 
 ## Species Configuration
 
@@ -304,10 +312,11 @@ Shared.Species = {
 ```
 
 **Drag Configuration**:
-- `drag = false` - Carcass cannot be dragged (small animals)
-- `drag = { ... }` - Defines how carcass attaches to player when dragging
 
----
+* `drag = false` - Carcass cannot be dragged (small animals)
+* `drag = { ... }` - Defines how carcass attaches to player when dragging
+
+***
 
 ## Pet System
 
@@ -339,11 +348,12 @@ Shared.Pet = {
 ```
 
 **Quality Effects**:
-- `'none'` - Pet doesn't affect meat quality
-- `'decrease'` - Pet decreases quality by `Value`
-- `'increase'` - Pet increases quality by `Value`
 
----
+* `'none'` - Pet doesn't affect meat quality
+* `'decrease'` - Pet decreases quality by `Value`
+* `'increase'` - Pet increases quality by `Value`
+
+***
 
 ## Quest Configuration
 
@@ -407,27 +417,25 @@ Shared.Quests = {
 ### Quest Types
 
 1. **Hunt Quests** (`type = 'hunt'`)
-   - Requires `target_animal`
-   - Completed by killing animals
-
+   * Requires `target_animal`
+   * Completed by killing animals
 2. **Trap Quests** (`type = 'trap'`)
-   - Requires `target_animal`
-   - Completed by trapping animals
-
+   * Requires `target_animal`
+   * Completed by trapping animals
 3. **Cook Quests** (`type = 'cook'`)
-   - No `target_animal` needed
-   - Completed by cooking any meat
+   * No `target_animal` needed
+   * Completed by cooking any meat
 
 ### Renewal Periods
 
-- `'daily'` - Resets every 24 hours
-- `'weekly'` - Resets every 7 days
-- `'threedays'` - Resets every 3 days
+* `'daily'` - Resets every 24 hours
+* `'weekly'` - Resets every 7 days
+* `'threedays'` - Resets every 3 days
 
----
+***
 
 ## Next Steps
 
-- Configure [Client Settings](client.md) for hunting zones
-- Set up [Server Configuration](server.md) for rewards
-- Review [API Reference](../api-reference.md) for integration
+* Configure [Client Settings](client.md) for hunting zones
+* Set up [Server Configuration](server.md) for rewards
+* Review [API Reference](../api-reference.md) for integration

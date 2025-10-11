@@ -1,8 +1,12 @@
+---
+icon: circle-small
+---
+
 # Server-Side API
 
 This page documents all server-side exports, callbacks, and events available in the Dusa Hunting System.
 
----
+***
 
 ## Server Exports
 
@@ -15,15 +19,18 @@ local success, newLevel, isLevelUp = exports['dusa_hunting']:addExperience(sourc
 ```
 
 **Parameters**:
-- `source` (number) - Player server ID
-- `amount` (number) - Amount of XP to add
+
+* `source` (number) - Player server ID
+* `amount` (number) - Amount of XP to add
 
 **Returns**:
-- `success` (boolean) - Whether XP was added successfully
-- `newLevel` (number) - Player's new level
-- `isLevelUp` (boolean) - Whether the player leveled up
+
+* `success` (boolean) - Whether XP was added successfully
+* `newLevel` (number) - Player's new level
+* `isLevelUp` (boolean) - Whether the player leveled up
 
 **Usage Example**:
+
 ```lua
 -- Give 50 XP to a player
 local success, level, leveledUp = exports['dusa_hunting']:addExperience(source, 50)
@@ -40,12 +47,13 @@ end
 ```
 
 **Use Cases**:
-- Custom quest rewards
-- Admin commands
-- Special events
-- Integration with other systems
 
----
+* Custom quest rewards
+* Admin commands
+* Special events
+* Integration with other systems
+
+***
 
 ### UpdateQuestProgress
 
@@ -56,12 +64,14 @@ exports['dusa_hunting']:UpdateQuestProgress(source, questType, animalType, amoun
 ```
 
 **Parameters**:
-- `source` (number) - Player server ID
-- `questType` (string) - Type of quest: `'hunt'`, `'trap'`, or `'cook'`
-- `animalType` (string) - Animal type (can be `nil` for cook quests)
-- `amount` (number) - Amount to add to progress
+
+* `source` (number) - Player server ID
+* `questType` (string) - Type of quest: `'hunt'`, `'trap'`, or `'cook'`
+* `animalType` (string) - Animal type (can be `nil` for cook quests)
+* `amount` (number) - Amount to add to progress
 
 **Usage Example**:
+
 ```lua
 -- Update hunt progress from custom script
 exports['dusa_hunting']:UpdateQuestProgress(source, 'hunt', 'bear', 1)
@@ -74,12 +84,13 @@ exports['dusa_hunting']:UpdateQuestProgress(source, 'trap', 'rabbit', 1)
 ```
 
 **Use Cases**:
-- Custom hunting mechanics
-- Admin quest completion
-- Integration with other quest systems
-- Special events
 
----
+* Custom hunting mechanics
+* Admin quest completion
+* Integration with other quest systems
+* Special events
+
+***
 
 ### reloadUITranslations
 
@@ -90,6 +101,7 @@ exports['dusa_hunting']:reloadUITranslations()
 ```
 
 **Usage Example**:
+
 ```lua
 -- Reload translations after updating locale files
 exports['dusa_hunting']:reloadUITranslations()
@@ -103,11 +115,11 @@ end, true)
 
 **Note**: Useful when updating locale files without restarting the resource.
 
----
+***
 
 ## Server Callbacks
 
-All server callbacks use `lib.callback` from ox_lib.
+All server callbacks use `lib.callback` from ox\_lib.
 
 ### hunting:server:buyCart
 
@@ -118,19 +130,22 @@ local success = lib.callback.await('hunting:server:buyCart', false, cart, paymen
 ```
 
 **Parameters**:
-- `cart` (table) - Array of items to purchase
-  ```lua
-  {
-      { item = 'hunting_bait', quantity = 5 },
-      { item = 'hunting_trap', quantity = 2 }
-  }
-  ```
-- `paymentMethod` (string) - Payment type: `'cash'` or `'bank'`
-- `totalPrice` (number) - Total price to charge
+
+*   `cart` (table) - Array of items to purchase
+
+    ```lua
+    {
+        { item = 'hunting_bait', quantity = 5 },
+        { item = 'hunting_trap', quantity = 2 }
+    }
+    ```
+* `paymentMethod` (string) - Payment type: `'cash'` or `'bank'`
+* `totalPrice` (number) - Total price to charge
 
 **Returns**: `boolean` - Success status
 
 **Usage Example**:
+
 ```lua
 -- Custom shop integration
 local cart = {
@@ -145,7 +160,7 @@ if success then
 end
 ```
 
----
+***
 
 ### hunting:server:getSellList
 
@@ -158,6 +173,7 @@ local sellList = lib.callback.await('hunting:server:getSellList', false)
 **Returns**: `table` - Array of sellable items with prices and quality
 
 **Response Example**:
+
 ```lua
 {
     {
@@ -192,6 +208,7 @@ local sellList = lib.callback.await('hunting:server:getSellList', false)
 ```
 
 **Usage Example**:
+
 ```lua
 -- Get player's sellable items
 local items = lib.callback.await('hunting:server:getSellList', source)
@@ -202,7 +219,7 @@ for _, item in ipairs(items) do
 end
 ```
 
----
+***
 
 ### hunting:server:sellItems
 
@@ -213,15 +230,18 @@ local result = lib.callback.await('hunting:server:sellItems', false, itemsToSell
 ```
 
 **Parameters**:
-- `itemsToSell` (table) - Array of items to sell
-  ```lua
-  {
-      { item = 'deer_beef', quantity = 3, quality = 2 },
-      { item = 'hide', quantity = 1, quality = 1 }
-  }
-  ```
+
+*   `itemsToSell` (table) - Array of items to sell
+
+    ```lua
+    {
+        { item = 'deer_beef', quantity = 3, quality = 2 },
+        { item = 'hide', quantity = 1, quality = 1 }
+    }
+    ```
 
 **Returns**: `table` - Result with earnings and XP gained
+
 ```lua
 {
     success = true,
@@ -238,6 +258,7 @@ local result = lib.callback.await('hunting:server:sellItems', false, itemsToSell
 ```
 
 **Usage Example**:
+
 ```lua
 local itemsToSell = {
     { item = 'deer_beef', quantity = 5, quality = 3 },
@@ -251,7 +272,7 @@ if result.success then
 end
 ```
 
----
+***
 
 ### hunting:server:processAnimalKill
 
@@ -262,12 +283,14 @@ local rewards = lib.callback.await('hunting:server:processAnimalKill', false, an
 ```
 
 **Parameters**:
-- `animalType` (string) - Type of animal (e.g., `'deer'`, `'bear'`)
-- `quality` (number) - Quality level (1-3)
+
+* `animalType` (string) - Type of animal (e.g., `'deer'`, `'bear'`)
+* `quality` (number) - Quality level (1-3)
 
 **Returns**: `table` - Array of rewards given
 
 **Usage Example**:
+
 ```lua
 -- Process a quality 3 deer kill
 local rewards = lib.callback.await('hunting:server:processAnimalKill', source, 'deer', 3)
@@ -278,7 +301,7 @@ for _, reward in ipairs(rewards) do
 end
 ```
 
----
+***
 
 ### hunting:server:getAnimalConfig
 
@@ -291,6 +314,7 @@ local animalConfig = lib.callback.await('hunting:server:getAnimalConfig', false)
 **Returns**: `table` - Complete animal rewards configuration
 
 **Usage Example**:
+
 ```lua
 -- Get config for custom processing
 local config = lib.callback.await('hunting:server:getAnimalConfig', source)
@@ -300,7 +324,7 @@ if config['deer'] then
 end
 ```
 
----
+***
 
 ### hunting:server:getPlayerLevel
 
@@ -313,6 +337,7 @@ local level = lib.callback.await('hunting:server:getPlayerLevel', false)
 **Returns**: `number` - Player's current hunting level (1-10)
 
 **Usage Example**:
+
 ```lua
 -- Check level for restrictions
 local level = lib.callback.await('hunting:server:getPlayerLevel', source)
@@ -324,7 +349,7 @@ if level < 5 then
 end
 ```
 
----
+***
 
 ### hunting:server:getPlayerProfile
 
@@ -335,6 +360,7 @@ local profile = lib.callback.await('hunting:server:getPlayerProfile', false)
 ```
 
 **Returns**: `table` - Player profile data
+
 ```lua
 {
     level = 5,
@@ -345,7 +371,7 @@ local profile = lib.callback.await('hunting:server:getPlayerProfile', false)
 }
 ```
 
----
+***
 
 ### hunting:server:GetLeaderBoard
 
@@ -356,6 +382,7 @@ local leaderboard = lib.callback.await('hunting:server:GetLeaderBoard', false)
 ```
 
 **Returns**: `table` - Array of top hunters
+
 ```lua
 {
     { name = 'Player1', level = 10, experience = 1000, title = 'master' },
@@ -364,7 +391,7 @@ local leaderboard = lib.callback.await('hunting:server:GetLeaderBoard', false)
 }
 ```
 
----
+***
 
 ### hunting:server:rentVehicle
 
@@ -375,6 +402,7 @@ local result = lib.callback.await('hunting:server:rentVehicle', false)
 ```
 
 **Returns**: `table` - Result with success status and vehicle info
+
 ```lua
 {
     success = true,
@@ -390,7 +418,7 @@ local result = lib.callback.await('hunting:server:rentVehicle', false)
 
 **Note**: Money is refunded when vehicle is returned.
 
----
+***
 
 ### hunting:server:returnVehicle
 
@@ -401,9 +429,11 @@ local result = lib.callback.await('hunting:server:returnVehicle', false, vehicle
 ```
 
 **Parameters**:
-- `vehicleNetId` (number) - Network ID of the vehicle
+
+* `vehicleNetId` (number) - Network ID of the vehicle
 
 **Returns**: `table` - Result with success status and refund amount
+
 ```lua
 {
     success = true,
@@ -412,7 +442,7 @@ local result = lib.callback.await('hunting:server:returnVehicle', false, vehicle
 }
 ```
 
----
+***
 
 ### hunting:server:checkVehicleOwnership
 
@@ -423,11 +453,12 @@ local isOwner = lib.callback.await('hunting:server:checkVehicleOwnership', false
 ```
 
 **Parameters**:
-- `vehicleNetId` (number) - Network ID of the vehicle
+
+* `vehicleNetId` (number) - Network ID of the vehicle
 
 **Returns**: `boolean` - Ownership status
 
----
+***
 
 ### hunting:server:addCookedItem
 
@@ -438,18 +469,20 @@ local success = lib.callback.await('hunting:server:addCookedItem', false, data)
 ```
 
 **Parameters**:
-- `data` (table)
-  ```lua
-  {
-      item = 'deer_beef',
-      part = 'beef',
-      count = 3
-  }
-  ```
+
+*   `data` (table)
+
+    ```lua
+    {
+        item = 'deer_beef',
+        part = 'beef',
+        count = 3
+    }
+    ```
 
 **Returns**: `boolean` - Success status
 
----
+***
 
 ### hunting:server:removeRawItem
 
@@ -460,17 +493,19 @@ local success = lib.callback.await('hunting:server:removeRawItem', false, data)
 ```
 
 **Parameters**:
-- `data` (table)
-  ```lua
-  {
-      item = 'deer_beef',
-      count = 3
-  }
-  ```
+
+*   `data` (table)
+
+    ```lua
+    {
+        item = 'deer_beef',
+        count = 3
+    }
+    ```
 
 **Returns**: `boolean` - Success status
 
----
+***
 
 ### hunting:server:getTraps
 
@@ -482,7 +517,7 @@ local traps = lib.callback.await('hunting:server:getTraps', false)
 
 **Returns**: `table` - Array of active traps
 
----
+***
 
 ### hunting:server:pickupTrap
 
@@ -493,11 +528,12 @@ local success = lib.callback.await('hunting:server:pickupTrap', false, trapId)
 ```
 
 **Parameters**:
-- `trapId` (number) - ID of the trap
+
+* `trapId` (number) - ID of the trap
 
 **Returns**: `boolean` - Success status
 
----
+***
 
 ## Server Events
 
@@ -510,18 +546,20 @@ TriggerServerEvent('hunting:server:addTrap', trapData)
 ```
 
 **Parameters**:
-- `trapData` (table)
-  ```lua
-  {
-      coords = vector3(x, y, z),
-      rotation = vector3(rx, ry, rz),
-      heading = 180.0,
-      triggered = false,
-      placedBy = playerId
-  }
-  ```
 
----
+*   `trapData` (table)
+
+    ```lua
+    {
+        coords = vector3(x, y, z),
+        rotation = vector3(rx, ry, rz),
+        heading = 180.0,
+        triggered = false,
+        placedBy = playerId
+    }
+    ```
+
+***
 
 ### hunting:server:resourceStarted
 
@@ -533,9 +571,9 @@ TriggerServerEvent('hunting:server:resourceStarted')
 
 **Note**: Automatically triggered by the script. Use for custom initialization.
 
----
+***
 
-### dusa_hunting:requestUITranslations
+### dusa\_hunting:requestUITranslations
 
 Requests UI translations from the server.
 
@@ -545,7 +583,7 @@ TriggerServerEvent('dusa_hunting:requestUITranslations')
 
 **Note**: Automatically handled by the script.
 
----
+***
 
 ## Integration Examples
 
@@ -697,56 +735,57 @@ AddEventHandler('hunting:server:animalKilled', function(animalType, quality)
 end)
 ```
 
----
+***
 
 ## Best Practices
 
-1. **Always validate player data**:
-   ```lua
-   local Player = Framework.GetPlayer(source)
-   if not Player then return end
-   ```
+1.  **Always validate player data**:
 
-2. **Check return values**:
-   ```lua
-   local success, level, leveledUp = exports['dusa_hunting']:addExperience(source, 50)
-   if not success then
-       print('Failed to add XP')
-       return
-   end
-   ```
+    ```lua
+    local Player = Framework.GetPlayer(source)
+    if not Player then return end
+    ```
+2.  **Check return values**:
 
-3. **Use callbacks for data retrieval**:
-   ```lua
-   -- Good
-   local level = lib.callback.await('hunting:server:getPlayerLevel', source)
+    ```lua
+    local success, level, leveledUp = exports['dusa_hunting']:addExperience(source, 50)
+    if not success then
+        print('Failed to add XP')
+        return
+    end
+    ```
+3.  **Use callbacks for data retrieval**:
 
-   -- Avoid storing level in global variables
-   ```
+    ```lua
+    -- Good
+    local level = lib.callback.await('hunting:server:getPlayerLevel', source)
 
-4. **Handle edge cases**:
-   ```lua
-   local sellList = lib.callback.await('hunting:server:getSellList', source)
-   if not sellList or #sellList == 0 then
-       -- No items to sell
-       return
-   end
-   ```
+    -- Avoid storing level in global variables
+    ```
+4.  **Handle edge cases**:
 
----
+    ```lua
+    local sellList = lib.callback.await('hunting:server:getSellList', source)
+    if not sellList or #sellList == 0 then
+        -- No items to sell
+        return
+    end
+    ```
+
+***
 
 ## Notes
 
-- All callbacks require ox_lib
-- Player must be online for callbacks to work
-- Use `source` for the calling player in server events
-- Check for player existence before processing
-- Quality multipliers are configured in [Shared Config](../configuration/shared.md#quality-multipliers)
+* All callbacks require ox\_lib
+* Player must be online for callbacks to work
+* Use `source` for the calling player in server events
+* Check for player existence before processing
+* Quality multipliers are configured in [Shared Config](../configuration/shared.md#quality-multipliers)
 
----
+***
 
 ## Next Steps
 
-- Review [Client-Side API](client.md) for client exports
-- Check [Shared Functions](shared.md) for utility functions
-- See [Configuration](../configuration/server.md) for server settings
+* Review [Client-Side API](client.md) for client exports
+* Check [Shared Functions](shared.md) for utility functions
+* See [Configuration](../configuration/server.md) for server settings
