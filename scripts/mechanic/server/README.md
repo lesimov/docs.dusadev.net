@@ -1,3 +1,7 @@
+---
+icon: code-simple
+---
+
 # Server
 
 This section contains server-side documentation for the Mechanic script.
