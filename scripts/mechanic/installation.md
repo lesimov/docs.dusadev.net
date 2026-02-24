@@ -1,287 +1,83 @@
 # Installation
 
-Complete step-by-step installation guide for DUSA Mechanic.
+-----
 
-## Prerequisites
+## Video Guide
 
-Before installing DUSA Mechanic, ensure your server meets these requirements:
+We'll share detailed installation video ASAP
 
-- **FiveM Server** - Artifact 5181 or higher
-- **ox_lib** - Latest version installed and started
-- **Database System** - MySQL or MariaDB
-- **Supported Framework** - One of the following:
-  - ESX Legacy (latest version)
-  - QBCore (latest version)
-  - QBox (latest version)
+-----
 
-## Step 1: Download & Extract
+## Steps
 
-1. Download the DUSA Mechanic package from your keymaster
-2. Extract the ZIP file to a temporary location
-3. You should have three folders:
-   - `dusa_bridge`
-   - `dusa_tablet`
-   - `dusa_mechanicv2` (or `mechanic-spec`)
+### Step 1: Install packages
 
-**File Structure:**
-```
-dusa_mechanic_package/
-├── dusa_bridge/
-│   ├── fxmanifest.lua
-│   ├── bridge/
-│   └── ...
-├── dusa_tablet/
-│   ├── fxmanifest.lua
-│   ├── web/
-│   └── ...
-└── dusa_mechanicv2/
-    ├── fxmanifest.lua
-    ├── server/
-    ├── client/
-    └── ...
-```
+1. Install package named **"Dusa Mechanic V2 | Tuning, Tablet App, Illegal Tuning, Job"**
+2. Install other package named **"Dusa Tablet | Hub for Dusa resources"**
+3. Install last package named **"Dusa Bridge"**
 
-## Step 2: Resource Placement
+### Step 2: Unzip downloaded files
 
-Move the extracted folders to your server's resources directory:
+1. Create a new folder named `[dusa]`
+2. Unzip all content inside `[dusa]` folder
 
-1. Copy `dusa_bridge` to `resources/[dusa]/dusa_bridge`
-2. Copy `dusa_tablet` to `resources/[dusa]/dusa_tablet`
-3. Copy `dusa_mechanicv2` to `resources/[dusa]/dusa_mechanicv2`
+### Step 3: Add to server start
 
-**Recommended folder structure:**
-```
-resources/
-└── [dusa]/
-    ├── dusa_bridge/
-    ├── dusa_tablet/
-    └── dusa_mechanicv2/
-```
-
-**Note:** You can use any folder name instead of `[dusa]`, but ensure all three resources are together.
-
-## Step 3: Database Setup
-
-Database tables are created automatically on first start through the migration system.
-
-**Automatic Migration:**
-```lua
--- In dusa_mechanicv2/shared/config.lua (default setting)
-MechanicConfig.Database = {
-    AutoMigration = true  -- Migrations run automatically on first start
-}
-```
-
-**Tables Created:**
-- `mechanic_shops` - Shop locations and settings
-- `mechanic_employees` - Employee records
-- `shop_orders` - Work order tracking
-- `mechanic_service_history` - Service history records
-- `mechanic_zones` - Service/tuning zone definitions
-
-**Manual Import (if needed):**
-If automatic migration fails, manually import from `dusa_mechanicv2/sql/`:
-```bash
-mysql -u username -p database_name < dusa_mechanicv2/sql/migrations/001_initial_schema.sql
-```
-
-## Step 4: Framework Configuration
-
-Configure the mechanic job in your framework.
-
-### For ESX Legacy
-
-Add mechanic job to your database:
-
-```sql
-INSERT INTO `jobs` (`name`, `label`, `whitelisted`) VALUES
-    ('mechanic', 'Mechanic', 1);
-
-INSERT INTO `job_grades` (`job_name`, `grade`, `name`, `label`, `salary`) VALUES
-    ('mechanic', 0, 'trainee', 'Trainee', 200),
-    ('mechanic', 1, 'mechanic', 'Mechanic', 400),
-    ('mechanic', 2, 'senior', 'Senior Mechanic', 600),
-    ('mechanic', 3, 'manager', 'Manager', 800),
-    ('mechanic', 4, 'boss', 'Shop Owner', 1000);
-```
-
-Create society account:
-```sql
-INSERT INTO `addon_account` (`name`, `label`, `shared`) VALUES
-    ('society_mechanic', 'Mechanic Shop', 1);
-```
-
-### For QBCore
-
-Add to `qb-core/shared/jobs.lua`:
-
-```lua
-['mechanic'] = {
-    label = 'Mechanic',
-    defaultDuty = true,
-    offDutyPay = false,
-    grades = {
-        ['0'] = { name = 'Trainee', payment = 200 },
-        ['1'] = { name = 'Mechanic', payment = 400 },
-        ['2'] = { name = 'Senior Mechanic', payment = 600 },
-        ['3'] = { name = 'Manager', payment = 800, isboss = false },
-        ['4'] = { name = 'Shop Owner', payment = 1000, isboss = true },
-    },
-},
-```
-
-### For QBox
-
-Add to `qbx_core/shared/jobs.lua`:
-
-```lua
-['mechanic'] = {
-    label = 'Mechanic',
-    defaultDuty = true,
-    offDutyPay = false,
-    grades = {
-        ['0'] = { name = 'Trainee', payment = 200 },
-        ['1'] = { name = 'Mechanic', payment = 400 },
-        ['2'] = { name = 'Senior Mechanic', payment = 600 },
-        ['3'] = { name = 'Manager', payment = 800 },
-        ['4'] = { name = 'Shop Owner', payment = 1000, isboss = true },
-    },
-},
-```
-
-## Step 5: Inventory Items
-
-Add mechanic items to your inventory system.
-
-### For ox_inventory
-
-Add to `ox_inventory/data/items.lua`:
-
-```lua
-['mechanic_tablet'] = {
-    label = 'Mechanic Tablet',
-    weight = 500,
-    stack = false,
-    close = true,
-    description = 'Professional diagnostic tablet for mechanics',
-    client = {
-        image = 'mechanic_tablet.png'
-    }
-},
-
-['repair_kit'] = {
-    label = 'Repair Kit',
-    weight = 1000,
-    stack = true,
-    close = true,
-    description = 'Basic vehicle repair tools'
-},
-
-['engine_oil'] = {
-    label = 'Engine Oil',
-    weight = 200,
-    stack = true,
-    close = true,
-    description = '5W-30 synthetic engine oil'
-},
-```
-
-**Note:** See [Item Catalog](reference/item-catalog.md) for complete item list.
-
-### For qb-inventory
-
-Add to `qb-core/shared/items.lua`:
-
-```lua
-['mechanic_tablet'] = {
-    name = 'mechanic_tablet',
-    label = 'Mechanic Tablet',
-    weight = 500,
-    type = 'item',
-    image = 'mechanic_tablet.png',
-    unique = true,
-    useable = true,
-    shouldClose = true,
-    description = 'Professional diagnostic tablet for mechanics'
-},
-
--- Add other items...
-```
-
-## Step 6: Server Configuration
-
-Add resources to `server.cfg` in the correct order:
-
-```cfg
-# Core dependencies
-ensure oxmysql
-ensure ox_lib
-
-# DUSA Mechanic (order is important)
-ensure dusa_bridge
-ensure dusa_tablet
-ensure dusa_mechanicv2
-```
-
-**Important:** Load order matters! `dusa_bridge` must start before `dusa_tablet` and `dusa_mechanicv2`.
-
-## Step 7: First Start
-
-1. Start your FiveM server
-2. Watch console for startup messages:
+1. Open your `server.cfg`
+2. Add the following line:
    ```
-   [dusa_bridge] Detected framework: ESX
-   [dusa_tablet] Tablet system initialized
-   [dusa_mechanicv2] Database migrations completed
-   [dusa_mechanicv2] Mechanic system ready
+   ensure [dusa]
    ```
 
-3. Check for errors - there should be none if installation was successful
+### Step 4: Add items
 
-## Verification Checklist
+1. Navigate into following path:
+   ```
+   [dusa]/dusa_tablet/INSTALL
+   ```
 
-Verify your installation is working correctly:
+2. **If you using `ox_inventory`**
+   - Open `ox_inventory_items.txt`, copy content
+   - Navigate into `ox_inventory/data/items.lua` and paste to bottom
+   - Open `illegal_network_items_ox_inventory.txt`, copy content
+   - Open `ox_inventory/data/items.lua` and paste them too
 
-- [ ] No console errors on server start
-- [ ] Database tables created (check with SQL client)
-- [ ] Tablet opens with `/tablet` command or mechanic_tablet item
-- [ ] Mechanic app visible in tablet app list
-- [ ] Can navigate tablet interface without errors
-- [ ] F8 console (client) shows no JavaScript errors
+3. **If you using `other inventories`**
+   - Add the items that included at `qb_core_items.txt` and `illegal_network_items_qb_core.txt` to your framework or your core. It depends on which inventory or core is this.
 
-## Common Installation Issues
+### Step 5: Add item images
 
-### Error: "ox_lib not found"
-**Solution:** Ensure ox_lib is installed and started before DUSA resources in server.cfg
+1. Navigate into following path:
+   ```
+   [dusa]/dusa_mechanic/INSTALL/images/
+   ```
+2. Open the folder depends on your choice, `webp` or `png`. Commonly used extension is `png` for item images.
+3. Copy images inside
+4. Paste item images to your inventory `images` folder
 
-### Error: "Database connection failed"
-**Solution:** Verify oxmysql is properly configured with correct database credentials
+### Step 6: IF YOU USING BUNDLED VERSION
 
-### Error: "Failed to verify protected resource"
-**Solution:** Check keymaster.fivem.net to ensure your server IP is linked to your purchase
+1. Navigate into following path:
+   ```
+   [dusa]/dusa_tablet/INSTALL/images/
+   ```
+2. Copy `tablet.png` or `tablet.webp` (extension depends on your using)
+3. Paste to your inventory images folder
+4. Open `ox_inventory.txt` or `qb-core.txt` (depends on your server), copy everything inside
+5. Paste to your `ox_inventory items.lua`. If you don't using ox, apply same step depends on your inventory or core
 
-### Tablet doesn't open
-**Solution:**
-1. Check server console for errors
-2. Verify `ensure dusa_tablet` in server.cfg
-3. Check F8 client console for NUI errors
+-----
 
-See [Troubleshooting Guide](troubleshooting.md) for more solutions.
+## If you got SQL errors at startup
 
-## Next Steps
+Normally, SQL works properly by default and does not cause any errors. However, SQL services used for some servers may differ and may cause errors when running automatically.
 
-Now that installation is complete:
+**To resolve this issue:**
 
-1. Follow the [Quick Start Guide](quick-start.md) to set up your first shop
-2. Read [Configuration](configuration.md) to customize settings
-3. Learn the [Tablet Interface](user-guide/tablet-basics.md)
-4. Create your first [Work Order](user-guide/work-orders.md)
+Go to the `dusa_mechanic` folder and run the `dusa_mechanic_full_install.sql` file in your database.
 
-## Need Help?
+**If you are also using the tablet:**
 
-If you encounter issues during installation:
+Go to the `dusa_tablet` folder and run the `dusa_tablet_full_instal.sql` file in your database.
 
-- Check the [Troubleshooting Guide](troubleshooting.md)
-- Review console logs for error messages
-- Ensure all prerequisites are met
-- Verify resource load order in server.cfg
+> **Warning:** Ensure you are performing the operation on the correct database. Performing this operation on a database not connected to your server will prevent it from being detected.
