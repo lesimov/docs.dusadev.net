@@ -16,11 +16,11 @@ The mechanic script includes nearly everything you need for a professional mecha
 
 ## Showcase
 
-Explore `dusa_police` with our Tablet Ecosystem.
+Explore `dusa_police` with our Tablet Ecosystem. 35 minute longer detailed walkthrough is here.
+
+{% embed url="https://www.youtube.com/watch?v=beX9mpsWS_U" %}
 
 
-
-VIDEO WILL BE HERE
 
 ***
 
