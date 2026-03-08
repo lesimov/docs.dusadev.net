@@ -2,6 +2,23 @@
 
 ***
 
+#### OpenJobMenu
+
+```lua
+exports.dusa_police:OpenJobMenu()
+```
+
+Opens the interactive job menu for LEO officers. Displays hierarchical menu with citizen interactions, object placement, vehicle interactions, speed cameras, and MDT access.
+
+**Requirements:**
+
+* Player must have LEO job
+* If `Config.RequireDuty` enabled: player must be on duty
+
+**Use Case:** Command systems, hotkeys, or event-driven menu access for officers
+
+
+
 #### Handcuff Status
 
 ```lua
