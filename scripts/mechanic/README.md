@@ -18,6 +18,16 @@ The mechanic script includes nearly everything you need for a professional mecha
 
 Explore `dusa_mechanic` with our Tablet Ecosystem.
 
+
+
+**Detailed Walkthrough**
+
+{% embed url="https://youtu.be/Gakyxwi8FFk" %}
+
+
+
+**Trailer**
+
 {% embed url="https://www.youtube.com/watch?v=Hnznz2Psdj8" %}
 
 ***
