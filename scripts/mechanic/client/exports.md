@@ -57,3 +57,16 @@ Returns whether the police vehicle scanner is currently open.
 local isOpen = exports['dusa_mechanic']:IsPoliceVehicleScannerOpen()
 print(isOpen) -- true or false
 ```
+
+***
+
+### Mileage Tracking
+
+#### Get Current Vehicle Mileage
+
+Returns current vehicle's kilometer or mile value for your hud
+
+```lua
+local value, unit = exports['dusa_mechanic']:getOdometerValue()
+print(value, unit) -- mileage value, km or mi
+```
