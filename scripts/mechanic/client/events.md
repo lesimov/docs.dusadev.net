@@ -74,3 +74,25 @@ Opens the floating police vehicle scanner UI on the target player's screen. Requ
 -- Open scanner for a specific player
 TriggerEvent('dusa_mechanic:openPoliceScanner')
 ```
+
+***
+
+### Remote Events
+
+#### Light Remote
+
+Opens the light (neon, xenon) remote. Bypasses item checks.
+
+```lua
+-- Open light remote
+TriggerEvent('mechanic:remotes:useLight')
+```
+
+#### Stance Remote
+
+Opens stance (suspension, camber) remote. Bypasses item checks.
+
+```lua
+-- Open stance remote
+TriggerEvent('mechanic:remotes:useStance')
+```
