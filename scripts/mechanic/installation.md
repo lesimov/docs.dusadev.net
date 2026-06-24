@@ -8,9 +8,13 @@ icon: down
 
 ## Video Guide
 
-We'll share detailed installation video ASAP
+{% embed url="https://youtu.be/oW-IZOjBRcA" %}
 
 ***
+
+{% hint style="danger" %}
+**DO NOT INSTALL DEPRECATED** _<mark style="color:$danger;">Dusa Mechanic V2 | Tuning, Tablet App, Illegal Tuning</mark>._ **We switched to&#x20;**_<mark style="color:$success;">**Dusa Mechanic v2 - 2.0 Update**</mark>**.**_**&#x20;Download it instead**
+{% endhint %}
 
 ## Steps
 
@@ -18,8 +22,8 @@ We'll share detailed installation video ASAP
 {% step %}
 ### Install packages
 
-* Install package named **"Dusa Mechanic V2 | Tuning, Tablet App, Illegal Tuning, Job"**
-* Install other package named **"Dusa Tablet | Hub for Dusa resources"**
+* Install package named **"Dusa Mechanic v2 - 2.0 Update"**
+* Install other package named **"Dusa Mechanic Assets"**
 * Install last package named **"Dusa Bridge"**
 {% endstep %}
 
@@ -44,14 +48,12 @@ ensure [dusa]
 {% step %}
 ### Add items
 
-1. Navigate into path: `[dusa]/dusa_tablet/INSTALL`
+1. Navigate into path: `[dusa]/dusa_mechanic/INSTALL`
 2. **If you using `ox_inventory`**
-   1. Open `ox_inventory_items.txt`, copy content
+   1. Open `all_items_ox.txt`, copy content
    2. Navigate into `ox_inventory/data/items.lua` and paste to bottom
-   3. Open `illegal_network_items_ox_inventory.txt`, copy content
-   4. Open `ox_inventory/data/items.lua` and paste them too
 3. **If you using `other inventories`**
-   1. Add the items that included at `qb_core_items.txt` and `illegal_network_items_qb_core.txt` to your framework or your core. It depends on which inventory or core is this.
+   1. Add the items that included at `all_items_qb.txt` to your framework or your core. It depends on which inventory or core is this.
 {% endstep %}
 
 {% step %}
