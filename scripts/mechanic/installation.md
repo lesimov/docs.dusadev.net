@@ -78,6 +78,18 @@ ensure [dusa]
 
 ***
 
+## Configuration
+
+You can our synced config editor from [http://127.0.0.1:30120/dusa\_mechanic/config-panel](http://127.0.0.1:30120/dusa_mechanic/config-panel)
+
+{% hint style="warning" %}
+**Make sure you open this URL on the machine where you started the server. If it's running on your VPS, you can access it through your VPS.**
+{% endhint %}
+
+<figure><img src="../../.gitbook/assets/ChromeDemo (1).gif" alt=""><figcaption></figcaption></figure>
+
+***
+
 ## If you got SQL errors at startup
 
 Normally, SQL works properly by default and does not cause any errors. However, SQL services used for some servers may differ and may cause errors when running automatically.
