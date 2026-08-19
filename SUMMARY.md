@@ -16,7 +16,7 @@
 
 ## Scripts
 
-* [Mechanic](scripts/mechanic/README.md)
+* [Taxi Job](scripts/mechanic/README.md)
   * [Installation](scripts/mechanic/installation.md)
   * [Commands](scripts/mechanic/commands.md)
   * [Client](scripts/mechanic/client/README.md)
@@ -25,6 +25,15 @@
   * [Server](scripts/mechanic/server/README.md)
     * [Callbacks](scripts/mechanic/server/callbacks.md)
     * [Exports](scripts/mechanic/server/exports.md)
+* [Mechanic](scripts/mechanic-1/README.md)
+  * [Installation](scripts/mechanic-1/installation.md)
+  * [Commands](scripts/mechanic-1/commands.md)
+  * [Client](scripts/mechanic-1/client/README.md)
+    * [Events](scripts/mechanic-1/client/events.md)
+    * [Exports](scripts/mechanic-1/client/exports.md)
+  * [Server](scripts/mechanic-1/server/README.md)
+    * [Callbacks](scripts/mechanic-1/server/callbacks.md)
+    * [Exports](scripts/mechanic-1/server/exports.md)
 * [Police V2](scripts/police-v2/README.md)
   * [Installation](scripts/police-v2/installation.md)
   * [Commands](scripts/police-v2/commands.md)
