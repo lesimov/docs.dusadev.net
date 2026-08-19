@@ -1,4 +1,5 @@
 ---
+hidden: true
 icon: code-simple
 ---
 
@@ -6,5 +7,5 @@ icon: code-simple
 
 This section contains client-side documentation for the Mechanic script.
 
-* [Events](events.md)
-* [Exports](exports.md)
+* [Events](../../mechanic/client/events.md)
+* [Exports](../../mechanic/client/exports.md)

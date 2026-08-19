@@ -1,6 +1,6 @@
 # Callbacks
 
------
+***
 
 ## Server Callbacks
 
@@ -24,7 +24,7 @@ lib.callback.register('mechanic:getWorkOrders', function(source, data)
 end)
 ```
 
------
+***
 
 ## Client Callbacks
 
@@ -43,7 +43,7 @@ if result.success then
 end
 ```
 
------
+***
 
 ### Hire Employee
 
@@ -61,7 +61,7 @@ else
 end
 ```
 
------
+***
 
 ### Withdraw Money
 
@@ -80,4 +80,4 @@ end
 
 > **Info:** Withdraw money and Hiring employee callbacks would require player to own defined shop. Otherwise they gonna throw error.
 
------
+***

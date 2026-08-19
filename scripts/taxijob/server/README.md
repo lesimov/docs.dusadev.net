@@ -1,4 +1,5 @@
 ---
+hidden: true
 icon: code-simple
 ---
 
@@ -6,5 +7,5 @@ icon: code-simple
 
 This section contains server-side documentation for the Mechanic script.
 
-* [Callbacks](callbacks.md)
-* [Exports](exports.md)
+* [Callbacks](../../mechanic/server/callbacks.md)
+* [Exports](../../mechanic/server/exports.md)
