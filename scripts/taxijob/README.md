@@ -1,10 +1,10 @@
 ---
-icon: car-burst
+icon: taxi
 ---
 
 # Taxi Job
 
-The mechanic script includes nearly everything you need for a professional mechanic shop experience.
+Good to have Taxi Job, stable and covers everything you need from a Taxi.
 
 ***
 
