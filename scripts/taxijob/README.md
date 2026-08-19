@@ -10,7 +10,7 @@ Good to have Taxi Job, stable and covers everything you need from a Taxi.
 
 ## Purchase
 
-<table data-card-size="large" data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="image">Cover image</th></tr></thead><tbody><tr><td><h3>Taxi  Job </h3></td><td><a href="https://dusadev.net/scripts/7594828">https://dusadev.net/scripts/7594828</a><a href="https://dusadev.net/scripts/7594828">Purchase Here</a></td><td>Taxi job package</td><td><a href="../../.gitbook/assets/taxithumbnail.png">taxithumbnail.png</a></td></tr></tbody></table>
+<table data-card-size="large" data-view="cards"><thead><tr><th></th><th></th><th></th><th data-hidden data-card-cover data-type="image">Cover image</th></tr></thead><tbody><tr><td><h3>Taxi  Job </h3></td><td><a href="https://dusadev.net/scripts/7594828">Purchase Here</a></td><td>Taxi job package</td><td><a href="../../.gitbook/assets/taxithumbnail.png">taxithumbnail.png</a></td></tr></tbody></table>
 
 ***
 
