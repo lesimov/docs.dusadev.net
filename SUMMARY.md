@@ -18,7 +18,9 @@
 
 * [Taxi Job](scripts/taxijob/README.md)
   * [Installation](scripts/taxijob/installation.md)
-  * [Commands](scripts/taxijob/commands.md)
+  * [Configuration](scripts/taxijob/configuration.md)
+  * [Payload Schemas](scripts/taxijob/payload-schemas.md)
+  * [Errors & Integration](scripts/taxijob/errors-and-integration.md)
   * [Client](scripts/taxijob/client/README.md)
     * [Events](scripts/taxijob/client/events.md)
     * [Exports](scripts/taxijob/client/exports.md)
