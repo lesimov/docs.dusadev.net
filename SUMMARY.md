@@ -104,4 +104,5 @@
 * [Hunting](scripts/hunting.md)
 * [Chop Shop](scripts/chop-shop.md)
 * [Boosting](scripts/boosting.md)
-* [Bridge](scripts/bridge.md)
+* [Bridge](scripts/bridge/README.md)
+  * [Changelog](scripts/bridge/changelog.md)
