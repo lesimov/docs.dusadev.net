@@ -101,3 +101,7 @@
   * [Installation](scripts/editor-7/installation.md)
   * [Configuration & Exports (ESX)](scripts/editor-7/configuration-and-exports-esx.md)
   * [Configuration & Exports (QB)](scripts/editor-7/configuration-and-exports-qb.md)
+* [Hunting](scripts/hunting.md)
+* [Chop Shop](scripts/chop-shop.md)
+* [Boosting](scripts/boosting.md)
+* [Bridge](scripts/bridge.md)
