@@ -36,6 +36,7 @@
   * [Server](scripts/mechanic/server/README.md)
     * [Callbacks](scripts/mechanic/server/callbacks.md)
     * [Exports](scripts/mechanic/server/exports.md)
+  * [Garage Integration](scripts/mechanic/garage-integration.md)
 * [Police V2](scripts/police-v2/README.md)
   * [Installation](scripts/police-v2/installation.md)
   * [Commands](scripts/police-v2/commands.md)
