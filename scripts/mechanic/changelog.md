@@ -4,6 +4,28 @@ All notable changes to Dusa Mechanic, newest first. Download the latest version 
 
 ***
 
+### 2.1.16
+
+_October 27, 2026_
+
+* Improved ECU app registration and recovery after Tablet restarts, UI reloads, late startup and character changes.
+* Improved handling of delayed player loads and outdated mechanic-membership responses.
+* Added the read-only mechanic\_ecu\_status F8 command to help diagnose missing ECU icons.
+* Improved ECU defaults for new installations while preserving explicit opt-outs and existing tuning, item and mechanic-access requirements.
+* Improved paired initialization with Tablet 1.3.3; update both resources when used together. Feedback from affected users is awaited.
+
+***
+
+### 2.1.15
+
+_October 25, 2026_
+
+* Improved synchronization of Mechanic application language with the selected Tablet language, including live language changes.
+* Improved translated Mechanic application names in the Tablet launcher.
+* Improved paired language support with Tablet 1.3.2; update both resources when using them together.
+
+***
+
 ### 2.1.14
 
 _October 24, 2026_
