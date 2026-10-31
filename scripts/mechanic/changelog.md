@@ -4,6 +4,14 @@ All notable changes to Dusa Mechanic, newest first. Download the latest version 
 
 ***
 
+### 2.1.17
+
+_October 31, 2026_
+
+* Fixed the Order Parts window showing insufficient funds when the shop uses society banking (e.g. Renewed-Banking), even though the society account had enough money.
+
+***
+
 ### 2.1.16
 
 _October 27, 2026_
