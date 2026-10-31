@@ -4,6 +4,15 @@ All notable changes to Dusa Bridge, newest first. Download the latest version fr
 
 ***
 
+### 0.9.9
+
+_October 31, 2026_
+
+* Fixed: duty toggles on ESX are now received by the server, so switching on or off applies correctly instead of being silently ignored.
+* Fixed: going off duty on ESX now stays off, instead of being flipped back to on duty when the state is updated.
+
+***
+
 ### 0.9.8
 
 _October 20, 2026_
